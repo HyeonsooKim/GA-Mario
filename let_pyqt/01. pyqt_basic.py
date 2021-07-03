@@ -20,3 +20,4 @@ if __name__ == '__main__':   #여기에 적는 코드들은 직접 실행할 때
     app = QApplication(sys.argv)
     window = MyApp()        # 붕어빵을 찍어내는 것, 붕어빵 이름이 window
     sys.exit(app.exec())    #여기까지 거의 고정적으로 쓰는 코드들들
+
