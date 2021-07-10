@@ -15,21 +15,22 @@ class MyApp(QWidget):
 
         self.setWindowTitle('GA Mario')
 
-        self.label = QLabel(self)
-
         self.show()
 
     #키를 누를 때
     def keyPressEvent(self, event):
         key = event.key()
         print(str(key) + ' press')
-        self.label.setText(str(key) + ' press')
+        self.label_text = QLabel(self)
+        self.label_text.setText(str(key)+' press')
+
 
     #키를 뗄 때
     def keyReleaseEvent(self, event):
         key = event.key()
-        self.setlab(str(key) + ' release')
-        self.label.setText(str(key) + ' released')
+        print(str(key) + ' release')
+        self.label_text = QLabel(self)
+        self.label_text.setText(str(key) + ' release')
 
 
 if __name__ == '__main__':
