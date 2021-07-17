@@ -15,22 +15,28 @@ class MyApp(QWidget):
 
         self.setWindowTitle('GA Mario')
 
+        self.label_text = QLabel(self)
+        self.label_text.setGeometry(0, 0, 100, 100)
         self.show()
 
     #키를 누를 때
     def keyPressEvent(self, event):
         key = event.key()
-        print(str(key) + ' press')
-        self.label_text = QLabel(self)
-        self.label_text.setText(str(key)+' press')
+        a = str(key) + ' press'
+        #global a    #전역변수를 찾는 코드
+        print(a)
+        self.label_text.setText(a)
+        if key == Qt.Key_F1:    #F1키 누르면 코드 실행, 예외처리 가능
+            print('f1 key')
 
 
     #키를 뗄 때
     def keyReleaseEvent(self, event):
         key = event.key()
-        print(str(key) + ' release')
-        self.label_text = QLabel(self)
-        self.label_text.setText(str(key) + ' release')
+        b = str(key) + ' release'
+        print(b)
+
+        self.label_text.setText(b)
 
 
 if __name__ == '__main__':
