@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8a2920a-0c6c-4e0f-86e9-da7d8d73699e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GA-Mario/practice_for_challenge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-Mario/04. input_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/04. input_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/let_pyqt/05.pyqt_timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/let_pyqt/05.pyqt_timer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
