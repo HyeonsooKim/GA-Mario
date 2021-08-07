@@ -5,7 +5,7 @@ import retro
 import numpy as np
 from PyQt5.QtCore import QTimer
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtGui import QImage, QPixmap, QPainter, QPen, QBrush, QColor
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 
 #게임 환경 생성
@@ -22,8 +22,7 @@ env.step(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0]))        #입력을 보내는 기�
 #화면 가져오기
 screen = env.get_screen()   #RGB값이 담겨있는 픽셀파일
 
-print(env)
-print(screen)
+ram = env.get_ram()
 
 class MyApp(QWidget):
     def __init__(self):  # 초기화자, 생성자 역할을 한다고 생각하면 됨
@@ -33,7 +32,16 @@ class MyApp(QWidget):
         self.label_image = QLabel(self)
         global env
         global screen
+        global ram
+        #get_full_screen_tile part
+        full_screen_tiles = ram[0x0500:0x069F + 1]
+        full_screen_tile_count = full_screen_tiles.shape[0]
 
+        full_screen_page1_tile = full_screen_tiles[:full_screen_tile_count // 2].reshape((13, 16))
+        full_screen_page2_tile = full_screen_tiles[full_screen_tile_count // 2:].reshape((13, 16))
+        full_screen_tiles = np.concatenate((full_screen_page1_tile, full_screen_page2_tile), axis=1).astype(np.int)
+
+        #화면 갱신
         self.env = env
         self.screen = screen
         self.press_button = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -52,7 +60,7 @@ class MyApp(QWidget):
         self.label_image.setPixmap(self.pixmap)
         self.label_image.setGeometry(0, 0, self.c[0], self.c[1])
 
-        self.setFixedSize(self.c[0], self.c[1])
+        self.setFixedSize(self.c[0]+600, self.c[1])
         self.setWindowTitle('GA Mario')
 
         # 타이머 생성
@@ -67,7 +75,18 @@ class MyApp(QWidget):
         self.show()  # 창 띄우기
 
 
+    def paintEvnet(self):
+        # 그리기 도구
+        painter = QPainter()
+        # 그리기 시작
+        painter.begin(self)
 
+        # RGB색으로 펜 설정
+        painter.setPen(QPen(QColor.fromRgb(255, 0, 0), 3.0, Qt.SolidLine))
+        # QBrush는 색을 채우는 역할
+        painter.setBrush(QBrush(Qt.white))
+        # 직사각형
+        painter.drawRect(0, 100, 100, 100)
 
     def timer(self):
         self.env.step(self.press_button)       #버튼정보 보내기
