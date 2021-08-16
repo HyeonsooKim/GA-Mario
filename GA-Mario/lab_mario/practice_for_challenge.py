@@ -12,10 +12,10 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 env = retro.make(game='SuperMarioBros-Nes', state='Level5-1')
 
 #새 게임 시작
-env.reset()
+# env.reset()
 
 #키 배열: B, NULL, SELECT, START, U, D, L, R, A
-env.step(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0]))        #입력을 보내는 기능이 이게 끝임, 전용 게임기에 있는 키값들을 하나의 배열로 만드는 것
+# env.step(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0]))        #입력을 보내는 기능이 이게 끝임, 전용 게임기에 있는 키값들을 하나의 배열로 만드는 것
 # 스텝이라는 함수를 쓰지 않으면 멈춰있고 프레임마다 호출됨
 # 60프레임이면 1/60초마다 호출되게 만드는데 이때 pyqt의 timer를 사용
 
@@ -30,16 +30,14 @@ class MyApp(QWidget):
 
         # 이미지도 QLabel로 띄울 수 있음
         self.label_image = QLabel(self)
+        self.label_image_for_ram_map = QLabel(self)
+
         global env
         global screen
         global ram
-        #get_full_screen_tile part
-        full_screen_tiles = ram[0x0500:0x069F + 1]
-        full_screen_tile_count = full_screen_tiles.shape[0]
 
-        full_screen_page1_tile = full_screen_tiles[:full_screen_tile_count // 2].reshape((13, 16))
-        full_screen_page2_tile = full_screen_tiles[full_screen_tile_count // 2:].reshape((13, 16))
-        full_screen_tiles = np.concatenate((full_screen_page1_tile, full_screen_page2_tile), axis=1).astype(np.int)
+        #get_full_screen_tile part
+        self.ram = ram
 
         #화면 갱신
         self.env = env

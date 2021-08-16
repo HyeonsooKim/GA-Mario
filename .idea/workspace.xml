@@ -2,18 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8a2920a-0c6c-4e0f-86e9-da7d8d73699e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GA-Mario/05. get_ram.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GA-Mario/06. get_full_screen_tile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GA-Mario/07. get_current_screen_tile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_ai/01. tensorflow_version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_ai/02. keras_neural_network.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/08. get_player_position.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/09. get_enemy_drawn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/10. get_enemy_position.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/11. get_distance.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/tile_display_practice.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/01. pyqt_basic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/02. pyqt_widget.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/03. pyqt_paint_event.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/04. pyqt_key_event.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/GA-Mario.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GA-Mario.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-Mario/01. retro_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/01. retro_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-Mario/02. create_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/02. create_env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-Mario/practice_for_challenge.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/practice_for_challenge.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hello_World.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hello_World.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/01. retro_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/01. retro_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/02. create_env.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/02. create_env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/03. get_screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/03. get_screen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/04. input_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/04. input_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/05. get_ram.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/05. get_ram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/06. get_full_screen_tile.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/06. get_full_screen_tile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/07. get_current_screen_tile.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/07. get_current_screen_tile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/practice_for_challenge.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/lab_mario/practice_for_challenge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/01. pyqt_basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/01. pyqt_basic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/01_practice.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/01_practice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/02.pyqt_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/02.pyqt_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/03.pyqt_paint_event.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/03.pyqt_paint_event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/04.pyqt_key_event.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/04.pyqt_key_event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/05.pyqt_timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/05.pyqt_timer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/a.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/a.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/aa.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/aa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/let_pyqt/pyqt_paint_event_challenge.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/let_pyqt/pyqt_paint_event_challenge.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,30 +53,113 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GA-Mario" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario" />
+      <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario\lab_mario" />
       <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario\rom" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.07. get_current_screen_tile">
-    <configuration name="02. create_env" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.tile_display_practice (1)">
+    <configuration name="02. keras_neural_network" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GA-Mario" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario/let_ai" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/let_ai/02. keras_neural_network.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="07. get_current_screen_tile" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GA-Mario" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario/lab_mario" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/lab_mario/07. get_current_screen_tile.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="practice_for_challenge" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GA-Mario" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario/lab_mario" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/lab_mario/practice_for_challenge.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tile_display_practice (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GA-Mario" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario/lab_mario" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/lab_mario/tile_display_practice.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tile_display_practice" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GA-Mario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -68,91 +171,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/02. create_env.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="06. get_full_screen_tile" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="GA-Mario" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/06. get_full_screen_tile.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="07. get_current_screen_tile" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="GA-Mario" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/07. get_current_screen_tile.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Hello_World" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="GA-Mario" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Hello_World.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="practice_for_challenge" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="GA-Mario" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/practice_for_challenge.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario\lab_mario\tile_display_practice.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -163,14 +182,15 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.07. get_current_screen_tile" />
+        <item itemvalue="Python.tile_display_practice (1)" />
         <item itemvalue="Python.practice_for_challenge" />
-        <item itemvalue="Python.06. get_full_screen_tile" />
-        <item itemvalue="Python.02. create_env" />
-        <item itemvalue="Python.Hello_World" />
+        <item itemvalue="Python.07. get_current_screen_tile" />
+        <item itemvalue="Python.02. keras_neural_network" />
+        <item itemvalue="Python.tile_display_practice" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -189,12 +209,11 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
