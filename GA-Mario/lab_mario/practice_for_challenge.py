@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 env = retro.make(game='SuperMarioBros-Nes', state='Level5-1')
 
 #새 게임 시작
-# env.reset()
+env.reset()
 
 #키 배열: B, NULL, SELECT, START, U, D, L, R, A
 # env.step(np.array([0, 0, 0, 0, 0, 0, 0, 0, 0]))        #입력을 보내는 기능이 이게 끝임, 전용 게임기에 있는 키값들을 하나의 배열로 만드는 것
@@ -30,20 +30,23 @@ class MyApp(QWidget):
 
         # 이미지도 QLabel로 띄울 수 있음
         self.label_image = QLabel(self)
-        self.label_image_for_ram_map = QLabel(self)
+        self.ram_map = QLabel(self)
 
+        # global full_screen_tiles
         global env
         global screen
         global ram
-
-        #get_full_screen_tile part
-        self.ram = ram
+        # global screen_tiles
 
         #화면 갱신
         self.env = env
         self.screen = screen
         self.press_button = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0])
         self.image = self.screen
+
+        #현재 및 전체 화면
+        # self.full_screen_tiles = full_screen_tiles
+        # self.screen_tiles = screen_tiles
 
         a = self.image.shape[1], self.image.shape[0]
         b = 3
@@ -57,6 +60,7 @@ class MyApp(QWidget):
 
         self.label_image.setPixmap(self.pixmap)
         self.label_image.setGeometry(0, 0, self.c[0], self.c[1])
+        self.ram_map.setGeometry(self.c[0], self.c[1]-220, self.c[0]+512, self.c[1])
 
         self.setFixedSize(self.c[0]+600, self.c[1])
         self.setWindowTitle('GA Mario')
@@ -66,25 +70,11 @@ class MyApp(QWidget):
         # 타이머에 실행할 함수 연결
         qtimer.timeout.connect(self.timer)
 
-        # 1초마다 연결된 함수를 실행
+        # 0.01667초마다 연결된 함수를 실행
         qtimer.start(16.667)
-
 
         self.show()  # 창 띄우기
 
-
-    def paintEvnet(self):
-        # 그리기 도구
-        painter = QPainter()
-        # 그리기 시작
-        painter.begin(self)
-
-        # RGB색으로 펜 설정
-        painter.setPen(QPen(QColor.fromRgb(255, 0, 0), 3.0, Qt.SolidLine))
-        # QBrush는 색을 채우는 역할
-        painter.setBrush(QBrush(Qt.white))
-        # 직사각형
-        painter.drawRect(0, 100, 100, 100)
 
     def timer(self):
         self.env.step(self.press_button)       #버튼정보 보내기
@@ -103,10 +93,52 @@ class MyApp(QWidget):
         self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)    #스케일
 
         self.label_image.setPixmap(self.pixmap)
-        # self.label_image.setGeometry(0, 0, self.c[0], self.c[1])
+        #-----------------------------------------------------------------------ram map-----------------------
+        self.full_screen_tiles = ram[0x0500:0x069F+1]
 
-        # self.setFixedSize(self.c[0], self.c[1])
-        # self.setWindowTitle('GA Mario')
+        self.full_screen_tile_count = self.full_screen_tiles.shape[0]
+
+        self.full_screen_page1_tile = self.full_screen_tiles[:self.full_screen_tile_count//2].reshape((13, 16))
+        self.full_screen_page2_tile = self.full_screen_tiles[self.full_screen_tile_count//2:].reshape((13, 16))
+
+        self.full_screen_tiles = np.concatenate((self.full_screen_page1_tile, self.full_screen_page2_tile), axis=1).astype(np.int)
+        # 0x071A	Current screen (in level)
+        # 현재 화면이 속한 페이지 번호
+        self.current_screen_page = ram[0x071A]
+        # 0x071C	ScreenEdge X-Position, loads next screen when player past it?
+        # 페이지 속 현재 화면 위치
+        self.screen_position = ram[0x071C]
+        # 화면 오프셋
+        self.screen_offset = (256 * self.current_screen_page + self.screen_position) % 512
+        # 타일 화면 오프셋
+        self.screen_tile_offset = self.screen_offset // 16
+        # 현재 화면 추출
+        self.screen_tiles = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:, self.screen_tile_offset:self.screen_tile_offset+16]
+
+
+
+    # def paintEvent(self, event):
+    #     # 그리기 도구
+    #     self.painter = QPainter()
+    #     # 그리기 시작
+    #     self.painter.begin(self)
+    #
+    #     self.painter.setPen(QPen(Qt.black, 1.0, Qt.SolidLine))
+    #     ccnt = 1
+    #     # for i in self.full_screen_tiles:
+    #     for i in self.screen_tiles:
+    #         cnt=-1
+    #         for j in i:
+    #             cnt+=1
+    #             if j == 0:
+    #                 # RGB 색상으로 브러쉬 설정
+    #                 self.painter.setBrush(Qt.gray)
+    #                 self.painter.drawRect(self.c[0]+cnt*16, ccnt*16, 16, 16)
+    #             else :
+    #                 self.painter.setBrush(Qt.cyan)
+    #                 self.painter.drawRect(self.c[0]+cnt*16, ccnt*16, 16, 16)
+    #         ccnt += 1
+    #     self.painter.end()
 
 
     #키를 누를 때

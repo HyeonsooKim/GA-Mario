@@ -32,9 +32,9 @@ class MyApp(QWidget):
 
     # 주기적으로 실행할 함수
     def timer(self):
-        # self.cnt += 1
-        # a = str(self.cnt)
-        # self.label_text.setText(a)  #string 형식만 출력가능하나봄
+        self.cnt += 1
+        a = str(self.cnt)
+        self.label_text.setText(a)  #string 형식만 출력가능하나봄
         print('Timer')
 
 
