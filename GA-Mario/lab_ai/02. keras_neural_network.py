@@ -4,7 +4,7 @@ import numpy as np
 
 # 순차적은 흐름을 만들어내는 모델을 만듦
 model = tf.keras.Sequential([
-    tf.keras.layers.Dense(9, input_shape=(13*16), activation='relu'),   #9개로 설정하는 건 그냥 임의로 한 것
+    tf.keras.layers.Dense(9, input_shape=(13 * 16,), activation='relu'),
     tf.keras.layers.Dense(6, activation='sigmoid')
 ])
 

@@ -28,6 +28,7 @@ full_screen_page2_tile = full_screen_tiles[full_screen_tile_count//2:].reshape((
 
 full_screen_tiles = np.concatenate((full_screen_page1_tile, full_screen_page2_tile), axis=1).astype(np.int)
 
+#----------------------------------------------------------------------------------------------------------------------------
 current_screen_page = ram[0x071A]
 
 screen_position = ram[0x071C]
@@ -37,6 +38,46 @@ screen_offset = (256 * current_screen_page + screen_position) % 512
 screen_tile_offset = screen_offset // 16
 
 screen_tiles = np.concatenate((full_screen_tiles, full_screen_tiles), axis=1)[:, screen_tile_offset:screen_tile_offset+16]
+#----------------------------------------------------------------------------------------------------------------------------
+# 0x03AD	Player x pos within current screen offset
+# 현재 화면 속 플레이어 x 좌표
+player_position_x = ram[0x03AD]
+# 0x03B8	Player y pos within current screen
+# 현재 화면 속 플레이어 y 좌표
+player_position_y = ram[0x03B8]
+
+# 타일 좌표로 변환
+player_tile_position_x = (player_position_x + 8) // 16
+player_tile_position_y = (player_position_y + 8) // 16 - 1
+#----------------------------------------------------------------------------------------------------------------------------
+
+
+# 0x000F-0x0013	Enemy drawn? Max 5 enemies at once.
+# 0 - No
+# 1 - Yes (not so much drawn as "active" or something)
+enemy_drawn = ram[0x000F:0x0013+1]
+
+#----------------------------------------------------------------------------------------------------------------------------
+
+# 0x006E-0x0072	Enemy horizontal position in level
+# 자신이 속한 화면 페이지 번호
+enemy_horizon_position = ram[0x006E:0x0072+1]
+# 0x0087-0x008B	Enemy x position on screen
+# 자신이 속한 페이지 속 x 좌표
+enemy_screen_position_x = ram[0x0087:0x008B+1]
+# 0x00CF-0x00D3	Enemy y pos on screen
+enemy_position_y = ram[0x00CF:0x00D3+1]
+# 적 x 좌표
+enemy_position_x = (enemy_horizon_position * 256 + enemy_screen_position_x) % 512
+
+print(enemy_position_x, enemy_position_y)
+
+# 적 타일 좌표
+enemy_tile_position_x = (enemy_position_x + 8) // 16
+enemy_tile_position_y = (enemy_position_y - 8) // 16 - 1
+
+#----------------------------------------------------------------------------------------------------------------------------
+
 
 # sigmoid : 0~1의 확률값으로 바꿔줌
 
@@ -112,39 +153,38 @@ class MyApp(QWidget):
         self.ram = self.env.get_ram()
 
 #-------------------------------------------------------------플레이어 좌표--------------------------------
-        # 0x03AD	Player x pos within current screen offset
-        # 현재 화면 속 플레이어 x 좌표
-        self.player_position_x = self.ram[0x03AD]
-        # 0x03B8	Player y pos within current screen
-        # 현재 화면 속 플레이어 y 좌표
-        self.player_position_y = self.ram[0x03B8]
-
-        # 타일 좌표로 변환
-        self.player_tile_position_x = (self.player_position_x + 8) // 16
-        self.player_tile_position_y = (self.player_position_y + 8) // 16 - 1
-
+        # # 0x03AD	Player x pos within current screen offset
+        # # 현재 화면 속 플레이어 x 좌표
+        # self.player_position_x = self.ram[0x03AD]
+        # # 0x03B8	Player y pos within current screen
+        # # 현재 화면 속 플레이어 y 좌표
+        # self.player_position_y = self.ram[0x03B8]
+        #
+        # # 타일 좌표로 변환
+        # self.player_tile_position_x = (self.player_position_x + 8) // 16
+        # self.player_tile_position_y = (self.player_position_y + 8) // 16 - 1
 #-------------------------------------------------------------Enemy_Drawn--------------------------------
-        # 0x000F-0x0013	Enemy drawn? Max 5 enemies at once.
-        # 0 - No
-        # 1 - Yes (not so much drawn as "active" or something)
-        self.enemy_drawn = self.ram[0x000F:0x0013+1]
+        # # 0x000F-0x0013	Enemy drawn? Max 5 enemies at once.
+        # # 0 - No
+        # # 1 - Yes (not so much drawn as "active" or something)
+        # self.enemy_drawn = self.ram[0x000F:0x0013+1]
 
 #-------------------------------------------------------------Enemy position----------------------------
-        # 0x006E-0x0072	Enemy horizontal position in level
-        # 자신이 속한 화면 페이지 번호
-        self.enemy_horizon_position = self.ram[0x006E:0x0072+1]
-        # 0x0087-0x008B	Enemy x position on screen
-        # 자신이 속한 페이지 속 x 좌표
-        self.enemy_screen_position_x = self.ram[0x0087:0x008B+1]
-        # 0x00CF-0x00D3	Enemy y pos on screen
-        self.enemy_position_y = self.ram[0x00CF:0x00D3+1]
-        # 적 x 좌표
-        self.enemy_position_x = (self.enemy_horizon_position * 256 + self.enemy_screen_position_x) % 512
-
-
-        # 적 타일 좌표
-        self.enemy_tile_position_x = (self.enemy_position_x + 8) // 16
-        self.enemy_tile_position_y = (self.enemy_position_y - 8) // 16 - 1
+        # # 0x006E-0x0072	Enemy horizontal position in level
+        # # 자신이 속한 화면 페이지 번호
+        # self.enemy_horizon_position = self.ram[0x006E:0x0072+1]
+        # # 0x0087-0x008B	Enemy x position on screen
+        # # 자신이 속한 페이지 속 x 좌표
+        # self.enemy_screen_position_x = self.ram[0x0087:0x008B+1]
+        # # 0x00CF-0x00D3	Enemy y pos on screen
+        # self.enemy_position_y = self.ram[0x00CF:0x00D3+1]
+        # # 적 x 좌표
+        # self.enemy_position_x = (self.enemy_horizon_position * 256 + self.enemy_screen_position_x) % 512
+        #
+        #
+        # # 적 타일 좌표
+        # self.enemy_tile_position_x = (self.enemy_position_x + 8) // 16
+        # self.enemy_tile_position_y = (self.enemy_position_y - 8) // 16 - 1
 
 #-------------------------------------------------------------
 
@@ -160,15 +200,77 @@ class MyApp(QWidget):
         self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)    #스케일
 
         self.label_image.setPixmap(self.pixmap)
-        #-----------------------------------------------------------------------ram map-----------------------
-        self.full_screen_tiles = self.ram[0x0500:0x069F+1]
+#-----------------------------------------------------------------------ram map-----------------------
+        # self.full_screen_tiles = self.ram[0x0500:0x069F+1]
+        #
+        # self.full_screen_tile_count = self.full_screen_tiles.shape[0]
+        #
+        # self.full_screen_page1_tile = self.full_screen_tiles[:self.full_screen_tile_count//2].reshape((13, 16))
+        # self.full_screen_page2_tile = self.full_screen_tiles[self.full_screen_tile_count//2:].reshape((13, 16))
+        #
+        # self.full_screen_tiles = np.concatenate((self.full_screen_page1_tile, self.full_screen_page2_tile), axis=1).astype(np.int)
+        # # 0x071A	Current screen (in level)
+        # # 현재 화면이 속한 페이지 번호
+        # self.current_screen_page = self.ram[0x071A]
+        # # 0x071C	ScreenEdge X-Position, loads next screen when player past it?
+        # # 페이지 속 현재 화면 위치
+        # self.screen_position = self.ram[0x071C]
+        # # 화면 오프셋
+        # self.screen_offset = (256 * self.current_screen_page + self.screen_position) % 512
+        # # 타일 화면 오프셋
+        # self.screen_tile_offset = self.screen_offset // 16
+        # # 현재 화면 추출
+        # self.screen_tiles = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:, self.screen_tile_offset:self.screen_tile_offset+16] #16을 조절하면 그만큼 타일 수가 늘어남
+#-----------------------------------------------------------------------------------------------------------------------------
+        self.update()
+
+    # full screen
+    def paintEvent(self, event):
+        # 그리기 도구
+        self.painter = QPainter()
+        #-------------------------내 포지션-----------------------------------------------------------------------
+        # 0x03AD	Player x pos within current screen offset
+        # 현재 화면 속 플레이어 x 좌표
+        self.player_position_x = self.ram[0x03AD]
+        # 0x03B8	Player y pos within current screen
+        # 현재 화면 속 플레이어 y 좌표
+        self.player_position_y = self.ram[0x03B8]
+
+        # 타일 좌표로 변환
+        self.player_tile_position_x = (self.player_position_x + 8) // 16
+        self.player_tile_position_y = (self.player_position_y + 8) // 16 - 1
+        #-------------------------적 드로운-----------------------------------------------------------------------
+        # 0x000F-0x0013	Enemy drawn? Max 5 enemies at once.
+        # 0 - No
+        # 1 - Yes (not so much drawn as "active" or something)
+        self.enemy_drawn = self.ram[0x000F:0x0013 + 1]
+        #-------------------------적 포지션-----------------------------------------------------------------------
+        # 0x006E-0x0072	Enemy horizontal position in level
+        # 자신이 속한 화면 페이지 번호
+        self.enemy_horizon_position = self.ram[0x006E:0x0072+1]
+        # 0x0087-0x008B	Enemy x position on screen
+        # 자신이 속한 페이지 속 x 좌표
+        self.enemy_screen_position_x = self.ram[0x0087:0x008B+1]
+        # 0x00CF-0x00D3	Enemy y pos on screen
+        self.enemy_position_y = self.ram[0x00CF:0x00D3+1]
+        # 적 x 좌표
+        self.enemy_position_x = (self.enemy_horizon_position * 256 + self.enemy_screen_position_x) % 512
+
+
+        # 적 타일 좌표
+        self.enemy_tile_position_x = (self.enemy_position_x + 8) // 16
+        self.enemy_tile_position_y = (self.enemy_position_y - 8) // 16 - 1
+        # -------------------------스크린-------------------------------------------------------------------------
+        self.full_screen_tiles = self.ram[0x0500:0x069F + 1]
 
         self.full_screen_tile_count = self.full_screen_tiles.shape[0]
 
-        self.full_screen_page1_tile = self.full_screen_tiles[:self.full_screen_tile_count//2].reshape((13, 16))
-        self.full_screen_page2_tile = self.full_screen_tiles[self.full_screen_tile_count//2:].reshape((13, 16))
+        self.full_screen_page1_tile = self.full_screen_tiles[:self.full_screen_tile_count // 2].reshape((13, 16))
+        self.full_screen_page2_tile = self.full_screen_tiles[self.full_screen_tile_count // 2:].reshape((13, 16))
 
-        self.full_screen_tiles = np.concatenate((self.full_screen_page1_tile, self.full_screen_page2_tile), axis=1).astype(np.int)
+        self.full_screen_tiles = np.concatenate((self.full_screen_page1_tile, self.full_screen_page2_tile),
+                                                axis=1).astype(np.int)
+        # -------------------------스크린-------------------------------------------------------------------------
         # 0x071A	Current screen (in level)
         # 현재 화면이 속한 페이지 번호
         self.current_screen_page = self.ram[0x071A]
@@ -180,33 +282,40 @@ class MyApp(QWidget):
         # 타일 화면 오프셋
         self.screen_tile_offset = self.screen_offset // 16
         # 현재 화면 추출
-        self.screen_tiles = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:, self.screen_tile_offset:self.screen_tile_offset+16] #16을 조절하면 그만큼 타일 수가 늘어남
+        self.screen_tiles = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:,
+                            self.screen_tile_offset:self.screen_tile_offset + 16]  # 16을 조절하면 그만큼 타일 수가 늘어남
+        # 현재 풀스크린 추출
+        self.screen_tiles_full = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:,
+                            self.screen_tile_offset:self.screen_tile_offset + 32]
 
-        #창을 새로고침
-        self.update()
-
-    # full screen
-    def paintEvent(self, event):
-        # 그리기 도구
-        self.painter = QPainter()
         # 그리기 시작
         self.painter.begin(self)
 
         self.painter.setPen(QPen(Qt.black, 1.0, Qt.SolidLine))
         ccnt = 1
         # for i in self.full_screen_tiles:
-        for i in self.full_screen_tiles:
+        for i in self.screen_tiles_full:
             cnt=-1
             for j in i:
                 cnt+=1
                 if j == 0:
                     # RGB 색상으로 브러쉬 설정
-                    self.painter.setBrush(Qt.gray)
-                    self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-16, 16, 16)
+                    if ccnt-1 == self.player_tile_position_y and cnt == self.player_tile_position_x:
+                        self.painter.setBrush(Qt.blue)
+                        self.painter.drawRect(self.c[0] + cnt * 16, ccnt*16-16, 16, 16)
+                    elif ccnt-1 ==  self.enemy_tile_position_y and cnt ==  self.enemy_tile_position_x:
+                        self.painter.setBrush(Qt.red)
+                        self.painter.drawRect(self.c[0] + cnt * 16, ccnt * 16 - 16, 16, 16)
+                    else:
+                        self.painter.setBrush(Qt.gray)
+                        self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-16, 16, 16)
+                        print(self.player_tile_position_y )   #1-13
                 else :
                     self.painter.setBrush(Qt.cyan)
                     self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-16, 16, 16)
+
             ccnt += 1
+
 
         for i in self.screen_tiles:
             cnt=-1
@@ -214,12 +323,19 @@ class MyApp(QWidget):
                 cnt+=1
                 if j == 0:
                     # RGB 색상으로 브러쉬 설정
-                    self.painter.setBrush(Qt.gray)
-                    self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
+                    if ccnt-1 == self.player_tile_position_y+13 and cnt == self.player_tile_position_x:
+                        self.painter.setBrush(Qt.blue)
+                        self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
+                        print('check')
+                    else:
+                        self.painter.setBrush(Qt.gray)
+                        self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
+                        # print(ccnt) #14-24
                 else :
                     self.painter.setBrush(Qt.cyan)
                     self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
             ccnt += 1
+
         self.painter.end()
 
     # current screen
