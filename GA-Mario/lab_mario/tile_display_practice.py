@@ -3,6 +3,7 @@
 import sys
 import retro
 import numpy as np
+import tensorflow as tf
 from PyQt5.QtCore import QTimer
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QImage, QPixmap, QPainter, QPen, QBrush, QColor
@@ -77,7 +78,12 @@ enemy_tile_position_x = (enemy_position_x + 8) // 16
 enemy_tile_position_y = (enemy_position_y - 8) // 16 - 1
 
 #----------------------------------------------------------------------------------------------------------------------------
-
+# 순차적인 흐름을 만들어내는 모델을 만듦
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(9, input_shape=(13 * 16,), activation='relu'),
+    tf.keras.layers.Dense(6, activation='sigmoid')
+])
+#----------------------------------------------------------------------------------------------------------------------------
 
 # sigmoid : 0~1의 확률값으로 바꿔줌
 
@@ -108,6 +114,7 @@ class MyApp(QWidget):
         global screen
         global ram
         global screen_tiles
+        global model
 
 
         #화면 갱신
@@ -119,6 +126,8 @@ class MyApp(QWidget):
         self.ram = ram
         self.full_screen_tiles = full_screen_tiles
         self.screen_tiles = screen_tiles
+
+        self.model = model
 
         a = self.image.shape[1], self.image.shape[0]
         b = 3
@@ -221,6 +230,20 @@ class MyApp(QWidget):
         # self.screen_tile_offset = self.screen_offset // 16
         # # 현재 화면 추출
         # self.screen_tiles = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:, self.screen_tile_offset:self.screen_tile_offset+16] #16을 조절하면 그만큼 타일 수가 늘어남
+        #--------------------------------------------------------------------------------Genetic Algorithm------------------------------
+        # print(self.model.summary())
+
+        self.data = np.random.randint(0, 3, (13 * 16,), dtype=np.int)
+        # print(self.data)
+
+        self.predict = self.model.predict(np.array([self.data]))[0]
+        # print(self.predict)
+
+        result = (self.predict > 0.5).astype(np.int)
+        self.press_button[8] = result[0]
+        for bb in range(1,5):
+            self.press_button[bb+3] = result[bb]
+        # print(result)
 #-----------------------------------------------------------------------------------------------------------------------------
         self.update()
 
@@ -244,6 +267,8 @@ class MyApp(QWidget):
         # 0 - No
         # 1 - Yes (not so much drawn as "active" or something)
         self.enemy_drawn = self.ram[0x000F:0x0013 + 1]
+
+        loc = np.where(self.enemy_drawn == 1)[0] # 1이되는 인덱스 반환해주는 함수
         #-------------------------적 포지션-----------------------------------------------------------------------
         # 0x006E-0x0072	Enemy horizontal position in level
         # 자신이 속한 화면 페이지 번호
@@ -260,6 +285,9 @@ class MyApp(QWidget):
         # 적 타일 좌표
         self.enemy_tile_position_x = (self.enemy_position_x + 8) // 16
         self.enemy_tile_position_y = (self.enemy_position_y - 8) // 16 - 1
+
+        self.ene_x = self.enemy_tile_position_x[loc]    #0~32
+        self.ene_y = self.enemy_tile_position_y[loc]
         # -------------------------스크린-------------------------------------------------------------------------
         self.full_screen_tiles = self.ram[0x0500:0x069F + 1]
 
@@ -270,10 +298,18 @@ class MyApp(QWidget):
 
         self.full_screen_tiles = np.concatenate((self.full_screen_page1_tile, self.full_screen_page2_tile),
                                                 axis=1).astype(np.int)
+
+        for a, b in zip(self.ene_x, self.ene_y):        #적 표시를 위함
+            try:
+                self.full_screen_tiles[b][a] = -1       #a가 0~32이므로 0~31만 여기 해당함
+            except:
+                continue                                #32일 때 skip
         # -------------------------스크린-------------------------------------------------------------------------
         # 0x071A	Current screen (in level)
         # 현재 화면이 속한 페이지 번호
         self.current_screen_page = self.ram[0x071A]
+        # 다음 화면이 속한 페이지 번호
+        self.next_screen_page = self.ram[0x071B]
         # 0x071C	ScreenEdge X-Position, loads next screen when player past it?
         # 페이지 속 현재 화면 위치
         self.screen_position = self.ram[0x071C]
@@ -288,6 +324,16 @@ class MyApp(QWidget):
         self.screen_tiles_full = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:,
                             self.screen_tile_offset:self.screen_tile_offset + 32]
 
+        #-------------------------------------------거리--------------------------------------------------------------
+        # 0x006D	Player horizontal position in level
+        # 플레이어가 속한 화면 페이지 번호
+        self.player_horizon_position = ram[0x006D]
+        # 0x0086	Player x position on screen
+        # 페이지 속 플레이어 x 좌표
+        self.player_screen_position_x = ram[0x0086]
+
+        self.distance = 256 * self.player_horizon_position + self.player_screen_position_x
+
         # 그리기 시작
         self.painter.begin(self)
 
@@ -300,16 +346,20 @@ class MyApp(QWidget):
                 cnt+=1
                 if j == 0:
                     # RGB 색상으로 브러쉬 설정
-                    if ccnt-1 == self.player_tile_position_y and cnt == self.player_tile_position_x:
-                        self.painter.setBrush(Qt.blue)
-                        self.painter.drawRect(self.c[0] + cnt * 16, ccnt*16-16, 16, 16)
-                    elif ccnt-1 ==  self.enemy_tile_position_y and cnt ==  self.enemy_tile_position_x:
-                        self.painter.setBrush(Qt.red)
-                        self.painter.drawRect(self.c[0] + cnt * 16, ccnt * 16 - 16, 16, 16)
-                    else:
-                        self.painter.setBrush(Qt.gray)
-                        self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-16, 16, 16)
-                        print(self.player_tile_position_y )   #1-13
+                    # if ccnt-1 == self.player_tile_position_y and cnt == self.player_tile_position_x:  #전체화면에서 내 캐릭 표시
+                    #     self.painter.setBrush(Qt.blue)
+                    #     self.painter.drawRect(self.c[0] + cnt * 16, ccnt*16-16, 16, 16)
+                        # print(self.enemy_tile_position_x[loc])
+                        # print(self.screen_tiles_full[b][a] for a, b in zip(self.ene_x, self.ene_y))
+                    # else:
+                    self.painter.setBrush(Qt.gray)
+                    self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-16, 16, 16)
+                        # print(self.player_tile_position_y )   #1-13
+
+                elif j < 0:
+                    self.painter.setBrush(Qt.red)
+                    self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-16, 16, 16)
+
                 else :
                     self.painter.setBrush(Qt.cyan)
                     self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-16, 16, 16)
@@ -326,42 +376,20 @@ class MyApp(QWidget):
                     if ccnt-1 == self.player_tile_position_y+13 and cnt == self.player_tile_position_x:
                         self.painter.setBrush(Qt.blue)
                         self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
-                        print('check')
+                        # print('check')
                     else:
                         self.painter.setBrush(Qt.gray)
                         self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
                         # print(ccnt) #14-24
+                elif j < 0:
+                    self.painter.setBrush(Qt.red)
+                    self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
                 else :
                     self.painter.setBrush(Qt.cyan)
                     self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
             ccnt += 1
 
         self.painter.end()
-
-    # current screen
-    # def paintEvent(self, event):
-    #     # 그리기 도구
-    #     self.painter = QPainter()
-    #     # 그리기 시작
-    #     self.painter.begin(self)
-    #
-    #     self.painter.setPen(QPen(Qt.black, 1.0, Qt.SolidLine))
-    #     ccnt = 1
-    #     # for i in self.full_screen_tiles:
-    #     for i in self.screen_tiles:
-    #         cnt=-1
-    #         for j in i:
-    #             cnt+=1
-    #             if j == 0:
-    #                 # RGB 색상으로 브러쉬 설정
-    #                 self.painter.setBrush(Qt.gray)
-    #                 self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-10, 16, 16)
-    #             else :
-    #                 self.painter.setBrush(Qt.cyan)
-    #                 self.painter.drawRect(self.c[0]+cnt*16, ccnt*16-10, 16, 16)
-    #         ccnt += 1
-    #     self.painter.end()
-
 
 
         #키를 누를 때
