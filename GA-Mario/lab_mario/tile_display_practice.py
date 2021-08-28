@@ -230,7 +230,7 @@ class MyApp(QWidget):
         # self.screen_tile_offset = self.screen_offset // 16
         # # 현재 화면 추출
         # self.screen_tiles = np.concatenate((self.full_screen_tiles, self.full_screen_tiles), axis=1)[:, self.screen_tile_offset:self.screen_tile_offset+16] #16을 조절하면 그만큼 타일 수가 늘어남
-        #--------------------------------------------------------------------------------Genetic Algorithm------------------------------
+#-----------------------------------------------Genetic Algorithm-------------------------------------------------------------
         # print(self.model.summary())
 
         self.data = np.random.randint(0, 3, (13 * 16,), dtype=np.int)
@@ -245,6 +245,7 @@ class MyApp(QWidget):
             self.press_button[bb+3] = result[bb]
         # print(result)
 #-----------------------------------------------------------------------------------------------------------------------------
+
         self.update()
 
     # full screen
@@ -304,7 +305,7 @@ class MyApp(QWidget):
                 self.full_screen_tiles[b][a] = -1       #a가 0~32이므로 0~31만 여기 해당함
             except:
                 continue                                #32일 때 skip
-        # -------------------------스크린-------------------------------------------------------------------------
+        # -------------------------현재 화면-------------------------------------------------------------------------
         # 0x071A	Current screen (in level)
         # 현재 화면이 속한 페이지 번호
         self.current_screen_page = self.ram[0x071A]
@@ -327,13 +328,14 @@ class MyApp(QWidget):
         #-------------------------------------------거리--------------------------------------------------------------
         # 0x006D	Player horizontal position in level
         # 플레이어가 속한 화면 페이지 번호
-        self.player_horizon_position = ram[0x006D]
+        self.player_horizon_position = self.ram[0x006D]
         # 0x0086	Player x position on screen
         # 페이지 속 플레이어 x 좌표
-        self.player_screen_position_x = ram[0x0086]
+        self.player_screen_position_x = self.ram[0x0086]
 
         self.distance = 256 * self.player_horizon_position + self.player_screen_position_x
 
+        #-------------------------------------------그리기 시작--------------------------------------------------------
         # 그리기 시작
         self.painter.begin(self)
 
@@ -388,6 +390,10 @@ class MyApp(QWidget):
                     self.painter.setBrush(Qt.cyan)
                     self.painter.drawRect(self.c[0]+cnt*16, ccnt*16+200, 16, 16)
             ccnt += 1
+
+        #거리 재는 거 출력하는 부분
+        # print(self.distance)
+
 
         self.painter.end()
 
