@@ -53,6 +53,7 @@ class MyApp(QWidget):
         self.press_button = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0])
         self.image = screen
 
+
         self.a = self.image.shape[1], self.image.shape[0]
         self.b = 3
         self.c = (self.a[0] * self.b, self.a[1] * self.b)
@@ -80,22 +81,37 @@ class MyApp(QWidget):
         self.show()
 
     def timer(self):
-        self.env.step(self.press_button)       #버튼정보 보내기
-        self.screen = self.env.get_screen()    #화면에 뿌려줌
-        self.image = self.screen               #image 함수에 적용
+        self.update_game()
+
+
+    def update_screen(self):
+        self.screen = self.env.get_screen()  # 화면에 뿌려줌
+        self.image = self.screen  # image 함수에 적용
         self.ram = self.env.get_ram()
 
-#------------------------------------------------화면 표시-------------------------------------------------------
+        # ------------------------------------------------화면 표시-------------------------------------------------------
         self.qimage = QImage(self.image, self.image.shape[1], self.image.shape[0],
                              QImage.Format_RGB888)  # shape 1번지 = 높이값, 0번지 = 너비값, RGB888
 
         self.pixmap = QPixmap(self.qimage)
 
-        self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)    #스케일
+        self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)  # 스케일
 
         self.label_image.setPixmap(self.pixmap)
 
         self.update()
+
+    def update_game(self):
+        self.env.step(self.press_button)
+        self.update_screen()
+#-------------------------------------------------get_status추가------------------------------------------------
+        #   0x001D Player "float" state
+        # 0x03 - 클리어
+        self.player_float_state = self.ram[0x001D]
+        print(self.player_float_state)
+
+        if self.player_float_state == 0x03:
+            print('클리어')
 
         #키를 누를 때
     def keyPressEvent(self, event):

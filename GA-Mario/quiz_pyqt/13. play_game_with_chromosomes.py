@@ -1,8 +1,7 @@
-#12. play_game_with_artificial_network.py
-# [도전과제12]
-# 02.keras_neural_network.py 에서 만든 신경망으로 마리오 게임 플레이하기
+#12. play_game_with_chromosomes.py
+# [도전과제13]
+# 04. chromosomes.py 에서 만든 염색체로 마리오 게임 플레이하고 [도전과제12] 실행 속도 비교하기
 
-# 11. display_enemy_position_on_tiles.py
 
 import sys
 import retro
@@ -21,6 +20,30 @@ env.reset()
 screen = env.get_screen()   #RGB값이 담겨있는 픽셀파일
 
 ram = env.get_ram()
+
+relu = lambda x: np.maximum(0, x)
+sigmoid = lambda x: 1.0 / (1.0 + np.exp(-x))
+
+
+class Chromosome:
+    def __init__(self):
+        self.w1 = np.random.uniform(low=-1, high=1, size=(13 * 16, 9))
+        self.b1 = np.random.uniform(low=-1, high=1, size=(9,))
+
+        self.w2 = np.random.uniform(low=-1, high=1, size=(9, 6))
+        self.b2 = np.random.uniform(low=-1, high=1, size=(6,))
+
+        self.distance = 0
+        self.max_distance = 0
+        self.frames = 0
+        self.stop_frames = 0
+        self.win = 0
+
+    def predict(self, data):
+        l1 = relu(np.matmul(data, self.w1) + self.b1)
+        output = sigmoid(np.matmul(l1, self.w2) + self.b2)
+        result = (output > 0.5).astype(np.int)
+        return result
 
 class MyApp(QWidget):
     def __init__(self):
@@ -94,10 +117,10 @@ class MyApp(QWidget):
         self.predict = self.model.predict(np.array([self.data]))[0]
         # print(self.predict)
 
-        result = (self.predict > 0.5).astype(np.int)
-        self.press_button[8] = result[0]
+        self.result = (self.predict > 0.5).astype(np.int)
+        self.press_button[8] = self.result[0]
         for bb in range(1, 5):
-            self.press_button[bb + 3] = result[bb]
+            self.press_button[bb + 3] = self.result[bb]
         # print(result)
 #----------------------------------------------업데이트--------------------------------------------------------------
         self.update()
@@ -287,4 +310,7 @@ class MyApp(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MyApp()
+    #크로모솜
+    ch_model = Chromosome()
+    window.model = ch_model
     sys.exit(app.exec_())
