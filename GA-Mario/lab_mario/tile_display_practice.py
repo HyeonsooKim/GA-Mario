@@ -103,6 +103,7 @@ model = tf.keras.Sequential([
 
 
 
+
 class MyApp(QWidget):
     def __init__(self):
         super().__init__()

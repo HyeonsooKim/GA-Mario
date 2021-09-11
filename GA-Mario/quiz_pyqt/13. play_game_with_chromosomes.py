@@ -95,19 +95,7 @@ class MyApp(QWidget):
         self.show()
 
     def timer(self):
-        self.env.step(self.press_button)       #버튼정보 보내기
-        self.screen = self.env.get_screen()    #화면에 뿌려줌
-        self.image = self.screen               #image 함수에 적용
-        self.ram = self.env.get_ram()
-#------------------------------------------------화면 표시-------------------------------------------------------
-        self.qimage = QImage(self.image, self.image.shape[1], self.image.shape[0],
-                             QImage.Format_RGB888)  # shape 1번지 = 높이값, 0번지 = 너비값, RGB888
-
-        self.pixmap = QPixmap(self.qimage)
-
-        self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)    #스케일
-
-        self.label_image.setPixmap(self.pixmap)
+        self.update_game()
 # -----------------------------------------------Genetic Algorithm-------------------------------------------------------------
         # print(self.model.summary())
 
@@ -125,6 +113,50 @@ class MyApp(QWidget):
 #----------------------------------------------업데이트--------------------------------------------------------------
         self.update()
 
+    def update_screen(self):
+        self.screen = self.env.get_screen()  # 화면에 뿌려줌
+        self.image = self.screen  # image 함수에 적용
+        self.ram = self.env.get_ram()
+
+        # ------------------------------------------------화면 표시-------------------------------------------------------
+        self.qimage = QImage(self.image, self.image.shape[1], self.image.shape[0],
+                             QImage.Format_RGB888)  # shape 1번지 = 높이값, 0번지 = 너비값, RGB888
+
+        self.pixmap = QPixmap(self.qimage)
+
+        self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)  # 스케일
+
+        self.label_image.setPixmap(self.pixmap)
+
+        self.update()
+
+    def update_game(self):
+        self.env.step(self.press_button)
+        self.update_screen()
+        # -------------------------------------------------get_status추가------------------------------------------------
+        #   0x001D Player "float" state
+        # 0x03 - 클리어
+        self.player_float_state = self.ram[0x001D]
+        print(self.player_float_state)
+
+        if self.player_float_state == 0x03:
+            print('클리어')
+        # 0x000E	Player's state
+        # 0x06, 0x0B - 게임 오버
+        self.player_state = self.ram[0x000E]
+        print(self.player_state)
+
+        if self.player_state == 0x06 or self.player_state == 0x0B:
+            print('게임 오버 1')
+
+        # 0x00B5	Player vertical screen position
+        # anywhere below viewport is >1
+        self.player_vertical_screen_position = self.ram[0x00B5]
+        print(self.player_vertical_screen_position)
+
+        if self.player_vertical_screen_position >= 2:
+            print('게임 오버 2')
+        #---------------------------------------------------------------------------------------------------------------
     # full screen
     def paintEvent(self, event):
         # 그리기 도구

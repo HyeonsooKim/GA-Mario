@@ -35,4 +35,5 @@ if __name__ == '__main__':
 
     model = Chromosome()
     data = np.random.randint(0, 3, (13 * 16,), dtype=np.int)
-    print(model.predict(data))
+    # print(model.predict(data))
+    # print(int(model.predict(data), 2))
