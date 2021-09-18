@@ -11,19 +11,20 @@ import sys
 import retro
 import numpy as np
 import tensorflow as tf
+import random
 from PyQt5.QtCore import QTimer
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QImage, QPixmap, QPainter, QPen, QBrush, QColor
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton
 
-env = retro.make(game='SuperMarioBros-Nes', state='Level2-1')
-env.reset()
-
-
-#화면 가져오기
-screen = env.get_screen()   #RGB값이 담겨있는 픽셀파일
-
-ram = env.get_ram()
+# env = retro.make(game='SuperMarioBros-Nes', state='Level2-1')
+# env.reset()
+#
+#
+# #화면 가져오기
+# screen = env.get_screen()   #RGB값이 담겨있는 픽셀파일
+#
+# ram = env.get_ram()
 
 relu = lambda x: np.maximum(0, x)
 sigmoid = lambda x: 1.0 / (1.0 + np.exp(-x))
@@ -49,6 +50,35 @@ class Chromosome:
         result = (output > 0.5).astype(np.int)
         return result
 
+
+class Genetic_Algorithm:
+    def roulette_wheel_selection(self, chromosomes):
+        result = []
+        # fitness_sum = sum(c.fitness() for c in chromosomes)
+        fitness_sum = 0
+        for chromosome in chromosomes:
+            fitness_sum += chromosome.fitness()
+        for _ in range(2):
+            pick = random.uniform(0, fitness_sum)
+            current = 0
+            for chromosome in chromosomes:
+                current += chromosome.fitness()
+                if current > pick:
+                    result.append(chromosome)
+                    break
+        return result
+
+    def elitist_preserve_selection(self, chromosomes):
+        # 상위 n개를 보존하는 것은 자유
+        sorted_chromosomes = sorted(chromosomes, key=lambda x: x.fitness(), reverse=True)
+        return sorted_chromosomes[:2]
+
+    def static_mutation(self, chromosome):
+        mutation_array = np.random.random(chromosome.shape) < 0.05
+        gaussian_mutation = np.random.normal(size=chromosome.shape)
+        chromosome[mutation_array] += gaussian_mutation[mutation_array]
+
+
 class MyApp(QWidget):
     def __init__(self):
         super().__init__()
@@ -67,10 +97,11 @@ class MyApp(QWidget):
         ])
 
         #화면 갱신
-        self.ram = ram
-        self.env = env
+        self.env = retro.make(game='SuperMarioBros-Nes', state='Level1-1')
+        self.ram = self.env.get_ram()
+        self.env.reset()
         self.press_button = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0])
-        self.image = screen
+        self.image = self.env.get_screen()
 
         self.a = self.image.shape[1], self.image.shape[0]
         self.b = 3
@@ -101,18 +132,11 @@ class MyApp(QWidget):
     def timer(self):
         self.update_game()
 
-#------------------------------------------------화면 표시-------------------------------------------------------
-        self.qimage = QImage(self.image, self.image.shape[1], self.image.shape[0],
-                             QImage.Format_RGB888)  # shape 1번지 = 높이값, 0번지 = 너비값, RGB888
+        # self.genetic_algorithm()
 
-        self.pixmap = QPixmap(self.qimage)
+        # self.update()
 
-        self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)    #스케일
-
-        self.label_image.setPixmap(self.pixmap)
-# -----------------------------------------------Genetic Algorithm-------------------------------------------------------------
-        # print(self.model.summary())
-
+    def genetic_algorithm(self):
         self.data = np.random.randint(0, 3, (13 * 16,), dtype=np.int)
         # print(self.data)
 
@@ -124,8 +148,54 @@ class MyApp(QWidget):
         for bb in range(1, 5):
             self.press_button[bb + 3] = self.result[bb]
         # print(result)
-#----------------------------------------------업데이트--------------------------------------------------------------
+
+    def update_screen(self):
+        self.screen = self.env.get_screen()  # 화면에 뿌려줌
+        self.image = self.screen  # image 함수에 적용
+        self.ram = self.env.get_ram()
+
+        # ------------------------------------------------화면 표시-------------------------------------------------------
+        self.qimage = QImage(self.image, self.image.shape[1], self.image.shape[0],
+                             QImage.Format_RGB888)  # shape 1번지 = 높이값, 0번지 = 너비값, RGB888
+
+        self.pixmap = QPixmap(self.qimage)
+
+        self.pixmap = self.pixmap.scaled(self.c[0], self.c[1], Qt.IgnoreAspectRatio)  # 스케일
+
+        self.label_image.setPixmap(self.pixmap)
+
         self.update()
+
+    def update_game(self):
+        self.env.step(self.press_button)
+        self.update_screen()
+        # -------------------------------------------------get_status추가------------------------------------------------
+        #   0x001D Player "float" state
+        # 0x03 - 클리어
+        self.player_float_state = self.ram[0x001D]
+        print(self.player_float_state)
+
+        if self.player_float_state == 0x03:
+            print('클리어')
+
+        # 0x000E	Player's state
+        # 0x06, 0x0B - 게임 오버
+        self.player_state = self.ram[0x000E]
+        print(self.player_state)
+
+        if self.player_state == 0x06 or self.player_state == 0x0B:
+            self.env.reset()
+            print('게임 오버 1')
+
+        # 0x00B5	Player vertical screen position
+        # anywhere below viewport is >1
+        self.player_vertical_screen_position = self.ram[0x00B5]
+        print(self.player_vertical_screen_position)
+
+        if self.player_vertical_screen_position >= 2:
+            self.env.reset()
+            print('게임 오버 2')
+        #---------------------------------------------------------------------------------------------------------------
 
     # full screen
     def paintEvent(self, event):
@@ -208,13 +278,33 @@ class MyApp(QWidget):
 
         self.painter.setPen(QPen(Qt.black, 1.0, Qt.SolidLine))
         ccnt = 1
+        # for i in range(screen_tiles.shape[0]):
+        #   for j in range(screen_tiles.shape[1]);
+        #     if screen_tiles[i][j] >0:
+        #       screen_tiles[i][j] = 1
+        #       painter.setbrush
+        #     elif == -1:
+        #         screen_tiles[i][j] = 2
+        #         setbrush
+        #     else:
+        #         setbrush
+        #     paint.drawRect(self.screen_width + 16 *j, 16*i, 16, 16)
+        # 플레이어 위치
+        # painter.drawRect(self.screen_width + 16 * player_tile_position_x, 16*player_tile_position_y, 16, 16)
+
+
+
         for i in self.screen_tiles_full:
             cnt = -1
             for j in i:
                 cnt += 1
                 if j == 0:
-                    self.painter.setBrush(Qt.gray)
-                    self.painter.drawRect(self.c[0] + cnt * 16, ccnt * 16 - 16, 16, 16)
+                    if ccnt - 1 == self.player_tile_position_y + 13 and cnt == self.player_tile_position_x:
+                        self.painter.setBrush(Qt.blue)
+                        self.painter.drawRect(self.c[0] + cnt * 16, ccnt * 16 + 200, 16, 16)
+                    else:
+                        self.painter.setBrush(Qt.gray)
+                        self.painter.drawRect(self.c[0] + cnt * 16, ccnt * 16 - 16, 16, 16)
                 elif j < 0:
                     self.painter.setBrush(Qt.red)
                     self.painter.drawRect(self.c[0] + cnt * 16, ccnt * 16 - 16, 16, 16)
@@ -246,6 +336,28 @@ class MyApp(QWidget):
                     self.painter.drawRect(self.c[0] + cnt * 16, ccnt * 16 + 200, 16, 16)
             ccnt += 1
 
+
+        # 네모박스
+        # frame_x = self.player_tile_position_x
+        # frame_y = 2
+        # self.painter.setBrush(Qt.NoBrush)
+        # self.painter.setPen(QPen(Qt.magenta, 4, Qt.SolidLine))
+        # # self.painter.drawRect(self.c[0], 16 * frame_x, 16 * frame_y, 16 * 8, 16 * 10)
+        # self.painter.drawRect(self.c[0] + frame_x * 16, frame_y * 16 - 16, 16*8, 16*10)
+
+        #제네틱
+
+        input_data = input_data.flatten()
+        current_chromosome = self.ga.chromosomes[self.ga.current_chromosome_index]
+        current_chromosome.frames +=1
+
+        current_chromosome.distance = 256 * player_horizon_position + player_screen_position_x
+
+        if current_chromosome.max_distance < current_chromosome.distance:
+            current_chromosome.max_distance=current_chromosome.distance
+            current_chromosome.stop_frames = 0
+        else:
+            current_chromosome.stop_frames += 1
         self.painter.end()
 
         #키를 누를 때
