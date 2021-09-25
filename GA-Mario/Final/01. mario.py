@@ -6,15 +6,20 @@ from PyQt5.QtGui import QImage, QPixmap, QPainter, QPen, QBrush, QColor
 import numpy as np
 import random
 
+#Activation 함수(ReLU, Sigmoid함수 정의)
+#def 함수정의와 같은 방식임 단지 lambda를 사용하면서 한줄로 함수를 표현할 수 있는 거임(활용도 높으니 다양한 응용사례를 접해볼 것)
 relu = lambda x: np.maximum(0, x)
 sigmoid = lambda x: 1.0 / (1.0 + np.exp(-x))
 
-
 class Chromosome:
     def __init__(self):
+        #유전 정보(저장할 예정)
+
+        #80(Input) to 9(hidden)
         self.w1 = np.random.uniform(low=-1, high=1, size=(80, 9))
         self.b1 = np.random.uniform(low=-1, high=1, size=(9,))
 
+        #9(hidden) to 6(output)
         self.w2 = np.random.uniform(low=-1, high=1, size=(9, 6))
         self.b2 = np.random.uniform(low=-1, high=1, size=(6,))
 
@@ -24,31 +29,42 @@ class Chromosome:
         self.stop_frames = 0
         self.win = 0
 
+    #예측
     def predict(self, data):
         l1 = relu(np.matmul(data, self.w1) + self.b1)
         output = sigmoid(np.matmul(l1, self.w2) + self.b2)
         result = (output > 0.5).astype(np.int)
         return result
 
+    #거리를 적합도로 사용
     def fitness(self):
         return self.distance
 
-
+#유전 알고리즘
 class GeneticAlgorithm:
     def __init__(self):
+        #초기 크로모송 모델 10개
         self.chromosomes = [Chromosome() for _ in range(10)]
+        #0번째 세대에서 시작
         self.generation = 0
         self.current_chromosome_index = 0
 
+    #룰렛휠 선택
     def roulette_wheel_selection(self):
+        #결과
         result = []
         # fitness_sum = sum(c.fitness() for c in chromosomes)
+        #적합도의 합
         fitness_sum = 0
+        #각 적합도의 총합
         for chromosome in self.chromosomes:
             fitness_sum += chromosome.fitness()
+        #2회 실행
         for _ in range(2):
+            #0부터 총합까지 랜덤한 숫자를 뽑음
             pick = random.uniform(0, fitness_sum)
             current = 0
+            #룰렛을 Flatten 시 pick이 가르키는위치가 몇 번째인지 알기 위해 current에 기존의 section?을 더함 current가 더해지면서 pick을 넘어가는 그 순간 더해진 section이 선택되는 거임
             for chromosome in self.chromosomes:
                 current += chromosome.fitness()
                 if current > pick:
@@ -84,6 +100,7 @@ class GeneticAlgorithm:
 
         return child1, child2
 
+    #각각의 랜덤값을 뽑아서 5%확률로 변이가 일어나는 것
     def static_mutation(self, chromosome):
         mutation_array = np.random.random(chromosome.shape) < 0.05
         gaussian_mutation = np.random.normal(size=chromosome.shape)
@@ -99,9 +116,11 @@ class GeneticAlgorithm:
         print(f'{self.generation}세대 시뮬레이션 완료.')
 
         next_chromosomes = []
+        #엘리트 보존은 바로 다음 세대로 넘어감(20%)
         next_chromosomes.extend(self.elitist_preserve_selection())
         print(f'엘리트 적합도: {next_chromosomes[0].fitness()}')
 
+        #4번 반복해서 2번씩(선택, 교배, 변이로 다음 구성원 채워감)
         for i in range(4):
             selected_chromosome = self.selection()
 
@@ -113,7 +132,9 @@ class GeneticAlgorithm:
             next_chromosomes.append(child_chromosome1)
             next_chromosomes.append(child_chromosome2)
 
+        #세대 교체
         self.chromosomes = next_chromosomes
+        #초기화
         for c in self.chromosomes:
             c.distance = 0
             c.max_distance = 0

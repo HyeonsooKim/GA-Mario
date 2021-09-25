@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8a2920a-0c6c-4e0f-86e9-da7d8d73699e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GA-Mario/Final/01. mario.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_ai/07. roulette_wheel_selection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_ai/08. elitist_preserve_selection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_ai/09. simulated_binary_crossover.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GA-Mario/lab_ai/10. statis_mutation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/Final/02. mario_with_save.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GA-Mario/Final/03. mario_visualize.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/01. pyqt_basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/01. pyqt_basic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/15. evolution_using_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/quiz_pyqt/15. evolution_using_genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GA-Mario/Final/01. mario.py" beforeDir="false" afterPath="$PROJECT_DIR$/GA-Mario/Final/01. mario.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hello_World.py" beforeDir="false" afterPath="$PROJECT_DIR$/Hello_World.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,35 +16,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GA-Mario/Final/01. mario.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hello_World.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="285" column="26" lean-forward="true" selection-start-line="285" selection-start-column="26" selection-end-line="285" selection-end-column="26" />
+            <state relative-caret-position="454">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
               <folding>
-                <element signature="e#0#12#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GA-Mario/lab_mario/07. get_current_screen_tile.py">
+        <entry file="file://$PROJECT_DIR$/GA-Mario/Final/02. mario_with_save.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GA-Mario/Final/03. mario_visualize.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="475">
-              <caret line="34" column="122" lean-forward="true" selection-start-line="24" selection-end-line="34" selection-end-column="122" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/15. evolution_using_genetic_algorithm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="339" selection-start-line="339" selection-end-line="360" selection-end-column="26" />
-              <folding>
-                <element signature="e#228#238#0" expanded="true" />
-              </folding>
+              <caret line="32" column="28" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -56,7 +49,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA-Mario/let_pyqt/03.pyqt_paint_event.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-190">
+            <state relative-caret-position="209">
               <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
               <folding>
                 <element signature="e#45#55#0" expanded="true" />
@@ -68,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/07. get_mario_game_with_keyboard_control.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="108" column="20" lean-forward="true" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
+            <state relative-caret-position="1938">
+              <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -77,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/02. pyqt_widget.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-268">
-              <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+            <state relative-caret-position="247">
+              <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -106,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/05. get_timer_on_window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-287">
-              <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+            <state relative-caret-position="57">
+              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -115,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/06. get_screen_on_window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="32" column="34" lean-forward="true" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+            <state relative-caret-position="513">
+              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -138,6 +131,22 @@
       <find>세대</find>
       <find>evalu</find>
       <find>reset</find>
+      <find>extend</find>
+      <find>gaussi</find>
+      <find>fitness</find>
+      <find>next_</find>
+      <find>max(min</find>
+      <find>저장</find>
+      <find>mario</find>
+      <find>super</find>
+      <find>drawText</find>
+      <find>env.st</find>
+      <find>margin</find>
+      <find>predict_margin</find>
+      <find>timer</find>
+      <find>fit</find>
+      <find>print</find>
+      <find>setgeo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,18 +190,20 @@
         <option value="$PROJECT_DIR$/GA-Mario/quiz_pyqt/13. play_game_with_chromosomes.py" />
         <option value="$PROJECT_DIR$/GA-Mario/lab_ai/07. roulette_wheel_selection.py" />
         <option value="$PROJECT_DIR$/GA-Mario/lab_ai/08. elitist_preserve_selection.py" />
-        <option value="$PROJECT_DIR$/Hello_World.py" />
         <option value="$PROJECT_DIR$/GA-Mario/lab_ai/09. simulated_binary_crossover.py" />
         <option value="$PROJECT_DIR$/GA-Mario/lab_ai/10. statis_mutation.py" />
         <option value="$PROJECT_DIR$/GA-Mario/quiz_pyqt/01. pyqt_basic.py" />
         <option value="$PROJECT_DIR$/GA-Mario/quiz_pyqt/15. evolution_using_genetic_algorithm.py" />
         <option value="$PROJECT_DIR$/GA-Mario/Final/01. mario.py" />
+        <option value="$PROJECT_DIR$/Hello_World.py" />
+        <option value="$PROJECT_DIR$/GA-Mario/Final/02. mario_with_save.py" />
+        <option value="$PROJECT_DIR$/GA-Mario/Final/03. mario_visualize.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="952" />
-    <option name="y" value="-8" />
+    <option name="x" value="936" />
+    <option name="y" value="115" />
     <option name="width" value="976" />
     <option name="height" value="1056" />
   </component>
@@ -205,6 +216,34 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
+              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
+              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
+              <item name="lab_ai" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
+              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
+              <item name="quiz_pyqt" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -257,34 +296,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
-              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
-              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
-              <item name="lab_ai" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GA-Mario" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
-              <item name="GA-Mario" type="462c0819:PsiDirectoryNode" />
-              <item name="quiz_pyqt" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -299,13 +310,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario" />
       <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario\lab_mario" />
       <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario\rom" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\Hyeonsoo\GA-Mario\GA-Mario\Final" />
+      <recent name="C:\Users\nextop\anaconda3\envs\ga-mario-env\GA-Mario\GA-Mario" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -320,8 +332,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.01. mario">
-    <configuration name="01. mario" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.03. mario_visualize">
+    <configuration name="01. mario" type="PythonConfigurationType" factoryName="Python">
       <module name="GA-Mario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -342,7 +354,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="07. roulette_wheel_selection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="02. mario_with_save" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="GA-Mario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -350,11 +362,32 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario/lab_ai" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario/Final" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/lab_ai/07. roulette_wheel_selection.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/Final/02. mario_with_save.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="03. mario_visualize" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="GA-Mario" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GA-Mario/Final" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GA-Mario/Final/03. mario_visualize.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -428,11 +461,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.01. mario" />
+        <item itemvalue="Python.03. mario_visualize" />
+        <item itemvalue="Python.02. mario_with_save" />
         <item itemvalue="Python.15. evolution_using_genetic_algorithm" />
         <item itemvalue="Python.Hello_World" />
         <item itemvalue="Python.08. elitist_preserve_selection" />
-        <item itemvalue="Python.07. roulette_wheel_selection" />
       </list>
     </recent_temporary>
   </component>
@@ -454,12 +487,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15279241" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15279241" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -506,13 +539,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GA-Mario/lab_mario/01. retro_version.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GA-Mario/let_pyqt/01_practice.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -700,16 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hello_World.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="52" lean-forward="true" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GA-Mario/lab_ai/10. statis_mutation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -798,10 +814,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GA-Mario/Final/01. mario.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-Mario/lab_mario/07. get_current_screen_tile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="34" column="122" selection-start-line="24" selection-end-line="34" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/15. evolution_using_genetic_algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6289">
+          <caret line="339" selection-start-line="339" selection-end-line="360" selection-end-column="26" />
+          <folding>
+            <element signature="e#228#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-Mario/let_pyqt/03.pyqt_paint_event.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding>
+            <element signature="e#45#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/07. get_mario_game_with_keyboard_control.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1938">
+          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/02. pyqt_widget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-268">
-          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        <state relative-caret-position="247">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -823,59 +883,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/05. get_timer_on_window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-287">
-          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        <state relative-caret-position="57">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/06. get_screen_on_window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="32" column="34" lean-forward="true" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+        <state relative-caret-position="513">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GA-Mario/lab_mario/07. get_current_screen_tile.py">
+    <entry file="file://$PROJECT_DIR$/Hello_World.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-Mario/Final/02. mario_with_save.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GA-Mario/Final/03. mario_visualize.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
-          <caret line="34" column="122" lean-forward="true" selection-start-line="24" selection-end-line="34" selection-end-column="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/07. get_mario_game_with_keyboard_control.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="108" column="20" lean-forward="true" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GA-Mario/let_pyqt/03.pyqt_paint_event.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding>
-            <element signature="e#45#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GA-Mario/quiz_pyqt/15. evolution_using_genetic_algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="339" selection-start-line="339" selection-end-line="360" selection-end-column="26" />
-          <folding>
-            <element signature="e#228#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GA-Mario/Final/01. mario.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="285" column="26" lean-forward="true" selection-start-line="285" selection-start-column="26" selection-end-line="285" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
+          <caret line="32" column="28" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
         </state>
       </provider>
     </entry>
